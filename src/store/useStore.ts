@@ -14,6 +14,7 @@ export const useStore = create<AppStore>()(
       timer: {
         phase: 'idle',
         timeRemaining: WORK_DURATION,
+        targetEndTime: null,
         isRunning: false,
       },
 
@@ -71,11 +72,13 @@ export const useStore = create<AppStore>()(
         const { selectedAreaId, timer } = get()
         if (!selectedAreaId) return
 
+        const now = Date.now()
         if (timer.phase === 'idle') {
           set({
             timer: {
               phase: 'working',
               timeRemaining: WORK_DURATION,
+              targetEndTime: now + WORK_DURATION * 1000,
               isRunning: true,
             },
           })
@@ -83,6 +86,7 @@ export const useStore = create<AppStore>()(
           set({
             timer: {
               ...timer,
+              targetEndTime: now + timer.timeRemaining * 1000,
               isRunning: true,
             },
           })
@@ -90,12 +94,19 @@ export const useStore = create<AppStore>()(
       },
 
       pauseTimer: () => {
-        set((state) => ({
+        const { timer } = get()
+        // Calculate actual remaining time when pausing
+        const remaining = timer.targetEndTime
+          ? Math.max(0, Math.ceil((timer.targetEndTime - Date.now()) / 1000))
+          : timer.timeRemaining
+        set({
           timer: {
-            ...state.timer,
+            ...timer,
+            timeRemaining: remaining,
+            targetEndTime: null,
             isRunning: false,
           },
-        }))
+        })
       },
 
       resetTimer: () => {
@@ -103,6 +114,7 @@ export const useStore = create<AppStore>()(
           timer: {
             phase: 'idle',
             timeRemaining: WORK_DURATION,
+            targetEndTime: null,
             isRunning: false,
           },
         })
@@ -110,9 +122,10 @@ export const useStore = create<AppStore>()(
 
       tick: () => {
         const { timer, selectedAreaId, incrementPomodoro } = get()
-        if (!timer.isRunning || timer.timeRemaining <= 0) return
+        if (!timer.isRunning || !timer.targetEndTime) return
 
-        const newTimeRemaining = timer.timeRemaining - 1
+        // Calculate real remaining time
+        const newTimeRemaining = Math.max(0, Math.ceil((timer.targetEndTime - Date.now()) / 1000))
 
         if (newTimeRemaining <= 0) {
           // Phase completed
@@ -125,6 +138,7 @@ export const useStore = create<AppStore>()(
               timer: {
                 phase: 'resting',
                 timeRemaining: REST_DURATION,
+                targetEndTime: null,
                 isRunning: false,
               },
             })
@@ -134,6 +148,7 @@ export const useStore = create<AppStore>()(
               timer: {
                 phase: 'idle',
                 timeRemaining: WORK_DURATION,
+                targetEndTime: null,
                 isRunning: false,
               },
             })

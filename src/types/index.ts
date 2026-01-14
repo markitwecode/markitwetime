@@ -10,6 +10,7 @@ export type TimerPhase = 'idle' | 'working' | 'resting'
 export type TimerState = {
   phase: TimerPhase
   timeRemaining: number // in seconds
+  targetEndTime: number | null // timestamp when timer should hit 0
   isRunning: boolean
 }
 

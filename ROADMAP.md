@@ -9,6 +9,7 @@ High-level feature list for autonomous OpenSpec workflow.
 - [x] **3. Sidebar UI** - Area list with progress display
 - [x] **4. Notifications** - Web Notifications API with sound
 - [x] **5. Area Management** - Add/edit/delete areas
+- [x] **6. Deployment** - Vercel hosting for public access
 
 ## Progress
 
@@ -19,6 +20,7 @@ High-level feature list for autonomous OpenSpec workflow.
 | Sidebar UI | 2026-01-13-enhance-sidebar-ui | Archived |
 | Notifications | 2026-01-13-add-notifications | Archived |
 | Area Management | 2026-01-13-add-area-management | Archived |
+| Deployment | 2026-01-13-deploy-to-vercel | Archived |
 
 ## Completed
 
@@ -27,6 +29,7 @@ High-level feature list for autonomous OpenSpec workflow.
 - **2026-01-13-enhance-sidebar-ui**: Time/pomodoro progress display, completion indicator, extra progress handling
 - **2026-01-13-add-notifications**: Web Notifications API, permission request, work/rest completion alerts
 - **2026-01-13-add-area-management**: Add/edit/delete areas UI, reset progress functionality
+- **2026-01-13-deploy-to-vercel**: Git repository, Vercel CLI deployment, public URL
 
 ---
 
@@ -41,3 +44,4 @@ All core features implemented:
 - Full area management (add/edit/delete/reset)
 - Dark mode UI
 - localStorage persistence
+- **Deployed to Vercel**: https://markitwetime.vercel.app
