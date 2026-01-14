@@ -174,7 +174,7 @@ export function App() {
             </>
           ) : (
             <>
-              <h1 className="text-4xl font-bold mb-4">MarkItWeTime</h1>
+              <h1 className="text-4xl font-bold mb-4">TimeSeverance</h1>
               <p className="text-gray-500">
                 {areas.length === 0
                   ? 'Add an area to get started'

@@ -1,4 +1,4 @@
-# MarkItWeTime
+# TimeSeverance
 
 A simple personal time management tool that focuses on **time invested** rather than task completion.
 
@@ -6,7 +6,7 @@ A simple personal time management tool that focuses on **time invested** rather 
 
 Traditional productivity systems obsess over checking off tasks. This creates paralysis when facing large projects or complex life areas where "done" is hard to define.
 
-MarkItWeTime flips the script: instead of tracking what you finish, track **time spent** on areas that matter.
+TimeSeverance flips the script: instead of tracking what you finish, track **time spent** on areas that matter.
 
 **Why this works:**
 - **Removes paralysis** - No need to define perfect tasks. Just show up and work.
